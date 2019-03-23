@@ -3,6 +3,7 @@
 
 #include "Arduino.h"
 
+void turnLedOn(int red, int green, int blue);
 int getGasSensorReading();
 void saveConfiguration(String ssid, String password);
 void resetConfiguration();

@@ -6,9 +6,9 @@
 
 #define PIN_MQ_THRESHOLD              A0
 
-#define PIN_LED_RED         13
-#define PIN_LED_GREEN       14
-#define PIN_LED_BLUE        15
+#define PIN_LED_RED         D0
+#define PIN_LED_GREEN       D1
+#define PIN_LED_BLUE        D2
 #define PIN_RESET           3
 
 enum MODULE_MODE {

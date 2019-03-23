@@ -16,3 +16,4 @@ Algumas configurações e páginas web do projeto são armazenadas no [sistema d
 
 * [ESP8266FS (v0.2.0)](https://github.com/esp8266/arduino-esp8266fs-plugin/releases/tag/0.2.0)
 * [Arduino RFID Library for MFRC522 (v1.4.3)](https://github.com/miguelbalboa/rfid)
+* [ArduinoJson (v5.x)](https://github.com/bblanchon/ArduinoJson)

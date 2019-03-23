@@ -6,6 +6,13 @@
 #include "FS.h"
 #include "const.h"
 
+void turnLedOn(int red, int green, int blue)
+{
+  analogWrite(PIN_LED_RED, red);
+  analogWrite(PIN_LED_GREEN, green);
+  analogWrite(PIN_LED_BLUE, blue);
+}
+
 int notifyRiven(String username, String message)
 {
     HTTPClient http;
