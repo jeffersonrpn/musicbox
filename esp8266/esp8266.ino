@@ -6,6 +6,7 @@
 MODULE_MODE operation_mode;
 
 Webserver server;
+IPAddress ip;
 
 void setup() {
   Serial.begin(115200);
@@ -22,10 +23,10 @@ void setup() {
   pinMode(PIN_LED_RED, OUTPUT);
   pinMode(PIN_LED_GREEN, OUTPUT);
   pinMode(PIN_LED_BLUE, OUTPUT);
+  turnLedOn(0, 0, 0);
 
   if (!isAppletConfigured()) {
     Serial.println("Applet not Configured");
-    turnLedOn(255, 0, 0);
     operation_mode = CONFIGURATION_MODE;
     WiFi.mode(WIFI_AP_STA);
 
@@ -38,16 +39,28 @@ void setup() {
   }
   else {
     Serial.print("Applet Configured!!!");
-    turnLedOn(0, 0, 255);
     WiFi.mode(WIFI_STA);
     WiFi.begin(getSavedSSID().c_str(), getSavedPassword().c_str());
 
     // Wait for connection
     while (WiFi.status() != WL_CONNECTED) {
-      delay(500);
+      turnLedOn(0, 0, 255);
+      delay(200);
+      turnLedOn(0, 0, 0);
+      delay(200);
     }
+    
+    server.begin();
 
-    pinMode(PIN_MQ_THRESHOLD, INPUT);
+    ip = WiFi.localIP();
+
+    Serial.println("");
+    Serial.print("Connected to ");
+    Serial.println(getSavedSSID());
+    Serial.print("IP address: ");
+    Serial.println(ip);
+    Serial.print("MAC: ");
+    Serial.println(WiFi.macAddress());
 
     operation_mode = WORKING_MODE;
     //resetConfiguration();
@@ -56,24 +69,12 @@ void setup() {
 
 void loop() {
   if (operation_mode == CONFIGURATION_MODE) {
+    turnLedOn(0, 0, 255);
     server.getServerObject()->handleClient();
   }
   else if (operation_mode == WORKING_MODE) {
     turnLedOn(255, 255, 255);
-    if (!digitalRead(PIN_MQ_THRESHOLD)) {
-      String message =  "*PERIGO*\n\n";
-      message += "\n\nO sensor detectou um nível anormal de gás inflamável, ";
-      message += "com risco de combustão.";
-
-      notifyRiven("MaXwEllDeN", message);
-
-      digitalWrite(LED_BUILTIN, LOW);
-      delay(100);
-      digitalWrite(LED_BUILTIN, HIGH);
-      delay(5000);
-    }   
+    server.getServerObject()->handleClient();
   }
 }
-
-
 

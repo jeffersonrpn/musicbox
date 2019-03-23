@@ -19,7 +19,7 @@ void Webserver::handleConfiguration()
   String ssid = server_object->arg("ssid");
   String password = server_object->arg("password");
     
-  String content = "<html><head><meta charset='UTF-8'><title>Detector de Gás</title>";
+  String content = "<html><head><meta charset='UTF-8'><title>MusicBox</title>";
   content += "<link rel='stylesheet' href='style.css'>";
   content += "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
   content += "</head><body><div class='logo'></div>";
@@ -28,7 +28,7 @@ void Webserver::handleConfiguration()
   content += "<span class='circle' style='background-color: #09ff00;'></span>Luz verde - Conectado com sucesso<br/>";
   content += "<div style='margin-top: 10px;'>";
   content += "<span class='circle' style='background-color: #ff0000;'></span>Luz vermelha - Falha ao conectar</div>";  
-  content += "</div></body><footer>powered by <a target='blank' href='http://maxwellden.github.com'>MaXwEllDeN</a></footer></html>";
+  content += "</div></body><footer>feito com &#9829; por <a target='blank' href='http://jeffersonrpn.github.com'>Jeff</a></footer></html>";
 
   server_object->send(200, "text/html", content);
   saveConfiguration(ssid, password);
@@ -87,7 +87,7 @@ void Webserver::handleRoot()
 
     webFile.close();
   } else {
-    content = "Nao deu";
+    content = "Ops! Algo errado não está certo.";
   }
 
   server_object->send(200, "text/html", content);

@@ -108,6 +108,6 @@ bool isAppletConfigured()
 void restartApplet()
 {    
     optimistic_yield(500);
-    //TODO: Resetart Applet
-    //digitalWrite(PIN_RESET, LOW);    
+    delay(1000);
+    ESP.restart();
 }
