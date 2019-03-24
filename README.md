@@ -6,7 +6,10 @@ Controlador de dispositivos ligados ao Spotify via tags RFID.
 ## Equipamento
 
 ESP8266 NodeMCU v 1.0 [datasheet](https://raw.githubusercontent.com/jeffersonrpn/musicbox/master/docs/esp8266-nodemcu-pinout.png)
+
 RFID-RC522 [pin layout](https://github.com/miguelbalboa/rfid#pin-layout)
+
+LED RGB difuso 5mm (Cátodo comum)
 
 ## Recursos utilizados
 
